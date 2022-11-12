@@ -1,44 +1,39 @@
 package sockets;
 import gui.VentanaServer;
-
-import javax.swing.*;
 import java.net.*;
-import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Server{
 
 
-
     public static void main(String[] args) {
-
+        int numerojugadores=0;
+        AtomicInteger levelchoose = new AtomicInteger();
         int portNumber = Integer.parseInt(args[0]);
-        ArrayList <Despachador> escritores = new ArrayList<>();
+
         VentanaServer v = new VentanaServer();
         v.setVisible(true);
-        int players=0;
 
+        v.inicar.addActionListener(ActionEvent -> {
+            levelchoose.set((int) v.niveles.getSelectedItem());//selecciona el nivel para los jugadores
+
+        });
+        int players=0;
+        //hacer que el canvas cliente entregue la posicion de su jugador y luego actualizarlo
         try {
             ServerSocket serverSocket = new ServerSocket(portNumber);
 
             while(true) {
+                System.out.println("esperando...");
                 Socket clientSocket = serverSocket.accept();
-                players++;
-                System.out.println("prueba");
-
-                Despachador lector = new Despachador(clientSocket, "jugador");
+                numerojugadores++;
+                Despachador lector = new Despachador(clientSocket, "jugador", numerojugadores);
                 lector.start();
-
-
-                Despachador escritor = new Despachador(clientSocket, "escribir");
-                escritores.add(escritor);
-                escritor.start();
-
             }
         }catch (Exception e){
             System.out.println("Error: " + e.getMessage());
         }
 
     }
-
 
 }

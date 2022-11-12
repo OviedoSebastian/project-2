@@ -6,9 +6,11 @@ import java.awt.*;
 public class VentanaLaberinto extends JFrame {
     Container panel;
     public Gamezone game;
+    public int player;
 
-    public VentanaLaberinto(){//creacion del contructor
+    public VentanaLaberinto(int player){//creacion del contructor
         super("----MAZE----");//creacion del objeto mediante super que es la clase padre
+        this.player = player;
         setSize(370,200);//manipulacion del tamaño de la ventana
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         panel = getContentPane();//espacio que contiene los objetos que agreguemos a la ventana
@@ -19,13 +21,6 @@ public class VentanaLaberinto extends JFrame {
         panel.add(txtname);
         JTextArea name_pj =  new JTextArea(1,15);
         panel.add(name_pj);
-        JLabel level = new JLabel("Ingresa el nivel que deseas jugar");
-        panel.add(level);
-        JComboBox niveles = new JComboBox();
-        niveles.addItem("level 1");
-        niveles.addItem("level 2");
-        niveles.addItem("level 3");
-        panel.add(niveles);
 
         JButton start = new JButton("iniciar");
         panel.add(start);
@@ -34,7 +29,8 @@ public class VentanaLaberinto extends JFrame {
             setSize(750,500);
             JLabel txt_level = new JLabel("---------LEVEL 1---------");
             panel.add(txt_level);
-            Gamezone game = new Gamezone();
+            game = new Gamezone();
+            game.setPlayer(this.player);
             panel.add(game);
 
         });

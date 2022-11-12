@@ -7,13 +7,7 @@ public class Client{
         int portNumber = Integer.parseInt(args[1]);
 
         try{
-
-            Socket kkSocket = new Socket(hostName, portNumber);
-
-            Despachador lector = new Despachador(kkSocket, "Server");//objeto jugador
-
-            Despachador escritor = new Despachador(kkSocket, "jugador");//objeto sincronizador
-
+            Socket jugadorsocket = new Socket(hostName, portNumber);
 
         }catch (Exception e){
             System.out.println("Error: " + e.getMessage() );

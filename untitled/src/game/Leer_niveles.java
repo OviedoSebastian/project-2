@@ -11,7 +11,7 @@ public class Leer_niveles{
         int [][]maze = new int[13][23];
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/game/levels/level1.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("untitled/src/game/levels/level1.txt"));
 
             while ((thisLine = br.readLine()) != null) {
 

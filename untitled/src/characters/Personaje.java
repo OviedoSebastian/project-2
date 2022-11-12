@@ -1,6 +1,6 @@
 package characters;
 import game.levels.Laberinto;
-
+import sockets.Despachador;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -8,24 +8,21 @@ public class Personaje{
 
     Laberinto lab = new Laberinto();
     int [][] laberinto = lab.obtenerLaberinto();
-    private int x=30;
-    private int y=30;
+    public int x=0;
+    public int y=0;
     private final int ancho = 30;
     private final int alto = 30;
     private final int movimiento = 30;
 
-    /*public Personaje(int players){
-        switch (players) {
-            case 1:
-                x = 30;
-                y = 30;
-                break;
-            case 2:
+    public Personaje(int players){
+       if(players==1) {
+           x = 30;
+           y = 30;
+       }else if(players ==2){
                 x = 60;
                 y = 60;
-                break;
-        }
-    }*/
+       }
+    }
 
     public void paintPJ(Graphics g){
         g.setColor(Color.red);
@@ -57,4 +54,6 @@ public class Personaje{
         }
 
     }
+
+
 }
